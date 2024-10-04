@@ -1,5 +1,14 @@
 public class Game {
-    public static void main(String[] args) {
+    Menu menu;
+
+
+    public Game() {
+        Menu menu = new Menu();
+
+    }
+
+    public void initGame() {
+        menu.createCharacter();
 
     }
 }
