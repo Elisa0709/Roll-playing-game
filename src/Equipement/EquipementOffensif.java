@@ -1,3 +1,5 @@
+package Equipement;
+
 import java.util.Objects;
 
 public class EquipementOffensif {

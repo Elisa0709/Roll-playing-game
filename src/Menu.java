@@ -1,12 +1,9 @@
+import Personnage.Personnage;
+
 import java.util.Scanner;
 
 
 public class Menu {
-
-
-    public void menu() {
-
-    }
 
     public Personnage createCharacter() {
         String name = getUserName();
@@ -17,20 +14,17 @@ public class Menu {
        Personnage player = new Personnage(name, type);
        return player;
     }
-//    public Personnage getPlayer(String name, String type) {
-//        return new Personnage(name, type);
+//    public Personnage.Personnage getPlayer(String name, String type) {
+//        return new Personnage.Personnage(name, type);
 //    }
 
-    public static void wait(int ms) {
+    public  void wait(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
-
-
-
 
     public String getUserName() {
         Scanner userInputName = new Scanner(System.in);
@@ -43,14 +37,14 @@ public class Menu {
         Scanner userInputType = new Scanner(System.in);
         System.out.println("Choix de votre classe : " +
                 "\ntapez le numéro de la classe choisie" +
-                "\n[1] Guerrier" +
-                "\n[2] Magicien");
+                "\n[1] Personnage.Guerrier" +
+                "\n[2] Personnage.Magicien");
 
         switch (userInputType.nextInt()) {
             case 1:
-                return "Guerrier";
+                return "Personnage.Guerrier";
             case 2:
-                return "Magicien";
+                return "Personnage.Magicien";
             default:
                 System.out.println("Aucune classe n'est associée à votre choix.");
                 wait(300);
@@ -58,8 +52,6 @@ public class Menu {
         }
             return "";
     }
-
-
     public int choiceMenu(){
         Scanner userChoiceInput = new Scanner(System.in);
         System.out.println("Par quoi on commence ?\n" +

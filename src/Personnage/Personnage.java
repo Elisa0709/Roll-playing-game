@@ -1,24 +1,36 @@
-import java.util.Objects;
+package Personnage;
 
-public class Personnage {
+
+import java.util.Objects;
+import Equipement.EquipementOffensif;
+import Equipement.EquipementDefensif;
+
+public abstract class Personnage {
+
+
     private String name;
     private String type;
     private int PV;
     private int forceAttaque;
     private EquipementOffensif equipementOffensif;
     private EquipementDefensif equipementDefensif;
+
+
+
+
     public Personnage() {
         this("Toto");
     }
     public Personnage(String name) {
-        this(name, "Guerrier");
+        this(name, "Personnage.Guerrier");
     }
-
     public Personnage(String name, String type) {
         this.name = name;
         this.type = type;
-        affectDefaultAttributs();
     }
+
+
+
 
     public String getName() {
         return name;
@@ -44,8 +56,9 @@ public class Personnage {
     public void setForceAttaque(int forceAttaque) {
         this.forceAttaque = forceAttaque;
     }
+
     public String toString() {
-        if(Objects.equals(type, "Guerrier")) {
+        if(Objects.equals(type, "Personnage.Guerrier")) {
             return "   \n" +
                     "                  [_]___[_]__[_]___[_]\n" +
                     "                  [__#__][__I_]__I__#]\n" +
@@ -99,18 +112,7 @@ public class Personnage {
                     equipementOffensif.toString() + "\n" +
                     equipementDefensif.toString() + "\n";
         }
-    }
-    public void affectDefaultAttributs(){
-        if (Objects.equals(this.type, "Guerrier")) {
-            this.PV = 10;
-            this.forceAttaque = 10;
-            this.equipementOffensif = new EquipementOffensif("Arme");
-            this.equipementDefensif = new EquipementDefensif("Bouclier");
-        } else if (Objects.equals(this.type,"Magicien")) {
-            this.PV = 6;
-            this.forceAttaque = 15;
-            this.equipementOffensif = new EquipementOffensif("Sort");
-            this.equipementDefensif = new EquipementDefensif("Philtre");
-        }
-    }
+    } //en mettre un par défaut
+
+
 }

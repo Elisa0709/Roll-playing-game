@@ -1,3 +1,6 @@
+import Personnage.Personnage;
+
+
 import java.util.Scanner;
 
 public class Game {
@@ -21,15 +24,15 @@ public class Game {
         int choice = menu.choiceMenu();
         executeChoiceMenu(choice);
 
-
         while (playerPosition != 64) {
             playerChoice();
             getNewPlayerPosition(rollDice());
             wait(300);
         }
+
     }
 
-    public static void wait(int ms) {
+    public void wait(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ex) {
@@ -91,9 +94,9 @@ public class Game {
     public void getNewPlayerPosition(int dice) {
         System.out.println("Votre lancé de dé : " + dice);
         if ((playerPosition + dice) <= 64) {
-            playerPosition = playerPosition + dice;
+            playerPosition += dice;
             System.out.println("Vous êtes sur la case : " + playerPosition + "\n" +
-                    "____________________________\n");
+                    "____________________________\n"); //affichage à mettre dans le menu
         } else {
             System.out.println("Impossible d'avancer");
         }
@@ -105,7 +108,7 @@ public class Game {
             System.out.println(
                     "[1] Rejouer\n" +
                             "[2] Quitter le jeu\n");
-            int userChoice = userChoiceInput.nextInt();
+            int userChoice = userChoiceInput.nextInt(); //affichage (+en gaut) dans menu
             switch (userChoice) {
                 case 1:
                     runGame();
