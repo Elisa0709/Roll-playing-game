@@ -3,14 +3,13 @@ import java.util.Scanner;
 
 public class Menu {
 
-private String name;
-private String type;
-private Personnage player;
+    private String name;
+    private String type;
+    private Personnage player;
 
     public void menu() {
 
     }
-
 
     public Personnage createCharacter() {
         intro();
@@ -20,9 +19,7 @@ private Personnage player;
         wait(800);
         choices();
         return new Personnage(name, type);
-
     }
-
 
     public static void wait(int ms) {
         try {
@@ -30,7 +27,9 @@ private Personnage player;
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-    };
+    }
+
+
 
     public void intro() {
         System.out.println(
@@ -99,25 +98,25 @@ private Personnage player;
                 wait(300);
                 choices();
                 break;
-                case 2:
-                    getUserName();
-                    wait(400);
-                    getUserType();
-                    wait(800);
-                    choices();
-                    break;
-                    case 3:
-                        //commencer le jeu
-                        break;
-                        case 4:
-                            System.out.println("Ciao !");
-                            wait(300);
-                            System.exit(0);
-                            break;
-                            default:
-                                System.out.println("Choix invalide");
-                                wait(6000);
-                                choices();
+            case 2:
+                getUserName();
+                wait(400);
+                getUserType();
+                wait(800);
+                choices();
+                break;
+            case 3:
+                break; //permet de sortir du menu choix et de continuer les instructions de game
+            case 4:
+                System.out.println("A bientôt !");
+                wait(300);
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Choix invalide");
+                wait(6000);
+                choices();
+                break;
         }
 
 
