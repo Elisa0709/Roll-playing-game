@@ -3,23 +3,23 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private String name;
-    private String type;
-    private Personnage player;
 
     public void menu() {
 
     }
 
     public Personnage createCharacter() {
-        intro();
-        getUserName();
+        String name = getUserName();
         wait(400);
-        getUserType();
+        String type =getUserType();
         wait(800);
-        choices();
-        return new Personnage(name, type);
+
+       Personnage player = new Personnage(name, type);
+       return player;
     }
+//    public Personnage getPlayer(String name, String type) {
+//        return new Personnage(name, type);
+//    }
 
     public static void wait(int ms) {
         try {
@@ -31,57 +31,36 @@ public class Menu {
 
 
 
-    public void intro() {
-        System.out.println(
-                "*----------BIENVENUE AVENTURIER !----------*\n" +
-                        "*------------------------------------------*\n" +
-                        "   Commençons par créer votre personnage\n" +
-                        "*------------------------------------------*\n"
 
-        );
-    }
-
-    public void getUserName() {
+    public String getUserName() {
         Scanner userInputName = new Scanner(System.in);
         System.out.println("Entrez votre nom : ");
         String userName = userInputName.nextLine();
         System.out.println("Bienvenue " + userName);
-        this.name = userName;
+        return userName;
     }
-
-    public void getUserType() {
+    public String getUserType() {
         Scanner userInputType = new Scanner(System.in);
         System.out.println("Choix de votre classe : " +
                 "\ntapez le numéro de la classe choisie" +
                 "\n[1] Guerrier" +
                 "\n[2] Magicien");
-        int userType = userInputType.nextInt();
 
-        switch (userType) {
+        switch (userInputType.nextInt()) {
             case 1:
-                this.type = "Guerrier";
-                System.out.println(
-                        "*------------------------------------------*\n" +
-                                "Votre classe : " + this.type + "\n" +
-                                "*------------------------------------------*\n");
-                break;
-
+                return "Guerrier";
             case 2:
-                this.type = "Magicien";
-                System.out.println(
-                        "*------------------------------------------*\n" +
-                                "Votre classe : " + this.type + "\n" +
-                                "*------------------------------------------*\n");
-                break;
+                return "Magicien";
             default:
                 System.out.println("Aucune classe n'est associée à votre choix.");
                 wait(300);
                 getUserType();
         }
-
+            return "";
     }
 
-    public void choices() {
+
+    public int choiceMenu(){
         Scanner userChoiceInput = new Scanner(System.in);
         System.out.println("Par quoi on commence ?\n" +
                 "[1] Je veux voir mon personnage\n" +
@@ -89,37 +68,12 @@ public class Menu {
                 "[3] Commencer le jeu !\n" +
                 "[4] Quitter le jeu \n"
         );
-        int userChoice = userChoiceInput.nextInt();
-
-        switch (userChoice) {
-            case 1:
-                Personnage player = new Personnage(name, type);
-                System.out.println(player);
-                wait(300);
-                choices();
-                break;
-            case 2:
-                getUserName();
-                wait(400);
-                getUserType();
-                wait(800);
-                choices();
-                break;
-            case 3:
-                break; //permet de sortir du menu choix et de continuer les instructions de game
-            case 4:
-                System.out.println("A bientôt !");
-                wait(300);
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Choix invalide");
-                wait(6000);
-                choices();
-                break;
-        }
-
-
+        return userChoiceInput.nextInt();
     }
+
+
+
+
+
 
 }

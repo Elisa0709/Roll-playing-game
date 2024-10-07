@@ -17,18 +17,7 @@ public class Personnage {
     public Personnage(String name, String type) {
         this.name = name;
         this.type = type;
-
-        if (Objects.equals(type, "Guerrier")) {
-            this.PV = 10;
-            this.forceAttaque = 10;
-            this.equipementOffensif = new EquipementOffensif("Arme");
-            this.equipementDefensif = new EquipementDefensif("Bouclier");
-        } else if (Objects.equals(type,"Magicien")) {
-            this.PV = 6;
-            this.forceAttaque = 15;
-            this.equipementOffensif = new EquipementOffensif("Sort");
-            this.equipementDefensif = new EquipementDefensif("Philtre");
-        }
+        affectDefaultAttributs();
     }
 
     public String getName() {
@@ -111,5 +100,17 @@ public class Personnage {
                     equipementDefensif.toString() + "\n";
         }
     }
-
+    public void affectDefaultAttributs(){
+        if (Objects.equals(this.type, "Guerrier")) {
+            this.PV = 10;
+            this.forceAttaque = 10;
+            this.equipementOffensif = new EquipementOffensif("Arme");
+            this.equipementDefensif = new EquipementDefensif("Bouclier");
+        } else if (Objects.equals(this.type,"Magicien")) {
+            this.PV = 6;
+            this.forceAttaque = 15;
+            this.equipementOffensif = new EquipementOffensif("Sort");
+            this.equipementDefensif = new EquipementDefensif("Philtre");
+        }
+    }
 }
