@@ -1,7 +1,7 @@
 import Personnage.Personnage;
 import Personnage.Guerrier;
 import Personnage.Magicien;
-
+import Exceptions.PlayerPositionException;
 import java.util.Scanner;
 
 public class Game {
@@ -25,6 +25,7 @@ public class Game {
             getNewPlayerPosition(rollDice());
             wait(300);
         }
+        isWinning();
 
     }
     public void wait(int ms) {
@@ -72,11 +73,22 @@ public class Game {
     }
     public void getNewPlayerPosition(int dice) {
         System.out.println("Votre lancé de dé : " + dice);
-        if ((playerPosition + dice) <= 64) {
-            playerPosition += dice;
-            menu.displayPlayerPosition(playerPosition);
-        } else if(playerPosition + dice >= 64){
-            playerPosition = 64;
+            try{
+                playerPosition += dice;
+                menu.displayPlayerPosition(playerPosition);
+
+                if(playerPosition >= 64){
+                    throw new PlayerPositionException();
+                }
+                else{
+                }
+
+            } catch (PlayerPositionException e){
+                playerPosition = 64;
+            }
+    }
+    public void isWinning() {
+        if(this.playerPosition == 64){
             System.out.println("Bravo, vous avez gagné !");
             wait(300);
             Scanner userChoiceInput = new Scanner(System.in);
@@ -93,7 +105,9 @@ public class Game {
                     break;
             }
         }
-    }
+}
+
+
     public void playerChoice() {
         Scanner userChoiceInput = new Scanner(System.in);
         menu.displayMenuRollDice();
@@ -125,6 +139,4 @@ public class Game {
                  break;
         }
     }
-
-
 }

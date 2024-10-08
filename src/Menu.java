@@ -59,7 +59,10 @@ public class Menu {
         );
     }
     public void displayPlayerPosition(int playerPosition) {
-        System.out.println("Vous êtes sur la case : " + playerPosition + "\n" +"____________________________\n");
+        if (playerPosition <64) {
+            System.out.println("Vous êtes sur la case : " + playerPosition + "\n" +"____________________________\n");
+        }
+
     }
     public void displayMenuRollDice(){
         System.out.println("A vous de jouer\n" +
@@ -72,6 +75,4 @@ public class Menu {
                 "[1] Rejouer\n" +
                 "[2] Quitter le jeu\n");
     }
-
-
 }
