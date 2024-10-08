@@ -1,6 +1,6 @@
 package Equipement;
 
-public class Philtre {
+public class Philtre extends EquipementDefensif{
     private String name;
     private int defenseLevel;
 

@@ -1,24 +1,40 @@
 package Equipement;
 
 public class Arme extends EquipementOffensif{
-    private int attaqueLevel;
-    private String name;
+    private int weaponAttaque;
+    private String weaponName;
 
     public Arme(String name) {
-        this.name = name;
-        switch (this.name) {
+        this.weaponName = name;
+        switch (this.weaponName) {
             case "Massue":
-                this.attaqueLevel = 3;
+                this.weaponAttaque = 3;
                 break;
 
             case "Epée":
-                this.attaqueLevel = 5;
+                this.weaponAttaque = 5;
                 break;
+            case "Void":
+                this.weaponAttaque = 0;
         }
     }
+
+    public int getWaponAttaque() {
+        return weaponAttaque;
+    }
+    public void setWeaponAttaque(int forceAttaque) {
+        this.weaponAttaque = forceAttaque;
+    }
+    public String getWeaponName() {
+        return weaponName;
+    }
+    public void setWeaponName(String weaponName) {
+        this.weaponName = weaponName;
+    }
+
     public String toString() {
-        return "Item : " + name + "\n" +
-                "Niveau de défense : " + attaqueLevel + "\n" +
+        return "Item : " + weaponName + "\n" +
+                "Niveau de défense : " + weaponAttaque + "\n" +
                 "_________________________________\n";
 
     }

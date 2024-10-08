@@ -1,24 +1,39 @@
 package Equipement;
 
 public class Sort extends EquipementOffensif {
-    private int attaqueLevel;
-    private String name;
+    private int spellAttack;
+    private String spellName;
 
     public Sort(String name) {
-        this.name = name;
-        switch (this.name) {
+        this.spellName = name;
+        switch (this.spellName) {
             case "Eclair":
-                this.attaqueLevel = 2;
+                this.spellAttack = 2;
                 break;
 
             case "Boule de feu":
-                this.attaqueLevel = 7;
+                this.spellAttack = 7;
                 break;
+            case "Void":
+                this.spellAttack = 0;
         }
     }
+
+    public int getSpellAttack() {
+        return this.spellAttack;
+    }
+    public void setSpellAttack(int spellAttack) {
+        this.spellAttack = spellAttack;
+    }
+    public String getSpellName() {
+        return spellName;
+    }
+    public void setSpellName(String spellName) {
+        this.spellName = spellName;
+    }
     public String toString() {
-        return "Item : " + name + "\n" +
-                "Niveau de défense : " + attaqueLevel + "\n" +
+        return "Item : " + spellName + "\n" +
+                "Niveau de défense : " + spellAttack + "\n" +
                 "_________________________________\n";
 
     }

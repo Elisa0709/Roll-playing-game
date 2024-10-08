@@ -1,6 +1,6 @@
 package Equipement;
 
-public class Bouclier {
+public class Bouclier extends EquipementDefensif{
     private String name;
     private int defenseLevel;
 

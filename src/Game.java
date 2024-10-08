@@ -1,5 +1,6 @@
 import Personnage.Personnage;
-
+import Personnage.Guerrier;
+import Personnage.Magicien;
 
 import java.util.Scanner;
 
@@ -13,17 +14,12 @@ public class Game {
         this.menu = new Menu();
         this.playerPosition = 0;
     }
-
     public void runGame() {
-        intro();
-        player = menu.createCharacter();
-        System.out.println(
-                "*------------------------------------------*\n" +
-                        "Votre classe : " + player.getType() + "\n" +
-                        "*------------------------------------------*\n");
+        menu.displayIntro();
+        createCharacter();
+        menu.displayType(player.getType());
         int choice = menu.choiceMenu();
         executeChoiceMenu(choice);
-
         while (playerPosition != 64) {
             playerChoice();
             getNewPlayerPosition(rollDice());
@@ -31,7 +27,6 @@ public class Game {
         }
 
     }
-
     public void wait(int ms) {
         try {
             Thread.sleep(ms);
@@ -39,7 +34,6 @@ public class Game {
             Thread.currentThread().interrupt();
         }
     }
-
     public void executeChoiceMenu(int choice){
             switch (choice) {
                 case 1:
@@ -49,14 +43,13 @@ public class Game {
                     executeChoiceMenu(userchoice);
                     break;
                 case 2:
-                    Scanner userChoiceInput = new Scanner(System.in);
-                    System.out.println("Entrez votre nom : ");
-                    player.setName(userChoiceInput.nextLine());
+                    String name = menu.getUserName();
                     wait(300);
+                    String type = menu.getUserType();
+                    instancePlayer(name, type);
+                    int menuChoice = menu.choiceMenu();
 
-                    player.setType(menu.getUserType());
-                    int typeUserChoice = menu.choiceMenu();
-                    executeChoiceMenu(typeUserChoice);
+                    executeChoiceMenu(menuChoice);
                     break;
                 case 3:
                     break; //permet de sortir du menu choix et de continuer les instructions de game
@@ -73,41 +66,21 @@ public class Game {
                     break;
         }
     }
-
-
-
-    public void intro() {
-        System.out.println(
-                "*----------BIENVENUE AVENTURIER !----------*\n" +
-                        "*------------------------------------------*\n" +
-                        "   Commençons par créer votre personnage\n" +
-                        "*------------------------------------------*\n"
-
-        );
-    }
-
     public int rollDice() {
         int range = (6 - 1) + 1;
         return (int) ((range * Math.random()) + 1);
     }
-
     public void getNewPlayerPosition(int dice) {
         System.out.println("Votre lancé de dé : " + dice);
         if ((playerPosition + dice) <= 64) {
             playerPosition += dice;
-            System.out.println("Vous êtes sur la case : " + playerPosition + "\n" +
-                    "____________________________\n"); //affichage à mettre dans le menu
-        } else {
-            System.out.println("Impossible d'avancer");
-        }
-
-        if (playerPosition == 64) {
+            menu.displayPlayerPosition(playerPosition);
+        } else if(playerPosition + dice >= 64){
+            playerPosition = 64;
             System.out.println("Bravo, vous avez gagné !");
             wait(300);
             Scanner userChoiceInput = new Scanner(System.in);
-            System.out.println(
-                    "[1] Rejouer\n" +
-                            "[2] Quitter le jeu\n");
+            menu.displayWinMenu();
             int userChoice = userChoiceInput.nextInt(); //affichage (+en gaut) dans menu
             switch (userChoice) {
                 case 1:
@@ -121,15 +94,10 @@ public class Game {
             }
         }
     }
-
     public void playerChoice() {
         Scanner userChoiceInput = new Scanner(System.in);
-        System.out.println("A vous de jouer\n" +
-                "[1] Lancer le dé\n" +
-                "[2] Quitte le jeu\n"
-        );
+        menu.displayMenuRollDice();
         int userChoice = userChoiceInput.nextInt();
-
         switch (userChoice) {
             case 1:
                 break;
@@ -138,6 +106,23 @@ public class Game {
                 wait(300);
                 System.exit(0);
                 break;
+        }
+    }
+    public void createCharacter(){
+        String name = menu.getUserName();
+        wait(400);
+        String type = menu.getUserType();
+        wait(800);
+        instancePlayer(name, type);
+    }
+    public void instancePlayer(String name, String type) {
+        switch (type) {
+            case "Guerrier":
+                 player = new Guerrier(name);
+                 break;
+            case "Magicien":
+                 player = new Magicien(name);
+                 break;
         }
     }
 
