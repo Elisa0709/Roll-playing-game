@@ -1,9 +1,17 @@
 package Personnage;
+
+import Equipement.Defensif.EquipementDefensif;
+import Equipement.Offensif.EquipementOffensif;
+import Equipement.Potion.Potion;
+
 public abstract class Personnage {
     private String name;
     private String type;
     private int PV;
     private int forceAttaque;
+    private EquipementOffensif equipementOffensif;
+    private EquipementDefensif equipementDefensif;
+    private Potion potion;
 
     public Personnage() {
         this("Toto");
@@ -40,6 +48,9 @@ public abstract class Personnage {
     public void setForceAttaque(int forceAttaque) {
         this.forceAttaque = forceAttaque;
     }
+
+
+
 
     public String toString() {
         return "";

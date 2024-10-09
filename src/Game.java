@@ -2,19 +2,22 @@ import Personnage.Personnage;
 import Personnage.Guerrier;
 import Personnage.Magicien;
 import Exceptions.PlayerPositionException;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
     Menu menu;
     private Personnage player;
-    private String[] board;
+    private ArrayList board;
     private int playerPosition;
 
     public Game() {
         this.menu = new Menu();
         this.playerPosition = 0;
+        this.board = new ArrayList();
     }
-    public void runGame() {
+    public void initGame() {
         menu.displayIntro();
         createCharacter();
         menu.displayType(player.getType());
@@ -26,16 +29,15 @@ public class Game {
             wait(300);
         }
         isWinning();
-
     }
-    public void wait(int ms) {
+    private void wait(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
-    public void executeChoiceMenu(int choice){
+    private void executeChoiceMenu(int choice){
             switch (choice) {
                 case 1:
                     System.out.println(player.toString());
@@ -67,11 +69,11 @@ public class Game {
                     break;
         }
     }
-    public int rollDice() {
+    private int rollDice() {
         int range = (6 - 1) + 1;
         return (int) ((range * Math.random()) + 1);
     }
-    public void getNewPlayerPosition(int dice) {
+    private void getNewPlayerPosition(int dice) {
         System.out.println("Votre lancé de dé : " + dice);
             try{
                 playerPosition += dice;
@@ -80,14 +82,11 @@ public class Game {
                 if(playerPosition >= 64){
                     throw new PlayerPositionException();
                 }
-                else{
-                }
-
             } catch (PlayerPositionException e){
                 playerPosition = 64;
             }
     }
-    public void isWinning() {
+    private void isWinning() {
         if(this.playerPosition == 64){
             System.out.println("Bravo, vous avez gagné !");
             wait(300);
@@ -96,7 +95,7 @@ public class Game {
             int userChoice = userChoiceInput.nextInt(); //affichage (+en gaut) dans menu
             switch (userChoice) {
                 case 1:
-                    runGame();
+                    initGame();
                     break;
                 case 2:
                     System.out.println("A bientôt !");
@@ -106,9 +105,7 @@ public class Game {
             }
         }
 }
-
-
-    public void playerChoice() {
+    private void playerChoice() {
         Scanner userChoiceInput = new Scanner(System.in);
         menu.displayMenuRollDice();
         int userChoice = userChoiceInput.nextInt();
@@ -122,14 +119,14 @@ public class Game {
                 break;
         }
     }
-    public void createCharacter(){
+    private void createCharacter(){
         String name = menu.getUserName();
         wait(400);
         String type = menu.getUserType();
         wait(800);
         instancePlayer(name, type);
     }
-    public void instancePlayer(String name, String type) {
+    private void instancePlayer(String name, String type) {
         switch (type) {
             case "Guerrier":
                  player = new Guerrier(name);

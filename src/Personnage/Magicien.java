@@ -1,19 +1,11 @@
 package Personnage;
 
-import Equipement.Sort;
-
 public class Magicien extends Personnage {
-    private Sort sort;
-    private String spellName;
-    private int spellAttack;
 
     public Magicien(String name) {
-        super(name, "Magicien");
+        super(name, "Magicien"); //on attribut des arguments à la classe Personnage, le de la création d'un objet Magicien
         this.setPV(6);
         this.setForceAttaque(15);
-        this.sort = new Sort("void");
-        this.spellAttack = sort.getSpellAttack();
-        this.spellName = sort.getSpellName();
     }
 
     public String toString() {
@@ -39,8 +31,8 @@ public class Magicien extends Personnage {
 
                 "Type : Magicien"  + "\n" +
                 "PV : " + this.getPV()+
-                "Sort : "+this.spellName+
-                "Attaque : " + (this.getForceAttaque()+this.spellAttack) + "\n\n"
+
+                "Attaque : " + (this.getForceAttaque()) + "\n\n"
                 ;
     }
 }

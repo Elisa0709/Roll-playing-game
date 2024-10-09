@@ -76,3 +76,4 @@ public class Menu {
                 "[2] Quitter le jeu\n");
     }
 }
+

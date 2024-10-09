@@ -7,6 +7,5 @@ public class PlayerPositionException extends Exception {
     public String getMessage(){
         return "Dépassement du plateau";
     }
-
 }
 

@@ -1,18 +1,11 @@
 package Personnage;
-import Equipement.Arme;
 
 public class Guerrier extends Personnage {
-private Arme arme;
-private int weaponAttack;
-private String weaponName;
 
     public Guerrier(String name) {
         super(name, "Guerrier");
-        this.setPV(10);;
-        this.setForceAttaque(10);
-        this.arme = new Arme("Void");
-        this.weaponAttack = arme.getWaponAttaque();
-        this.weaponName = arme.getWeaponName();
+        super.setPV(10);;
+        super.setForceAttaque(10);
     }
 
     public String toString() {
@@ -38,8 +31,7 @@ private String weaponName;
 
                         "Type :  Guerrier" + "\n" +
                         "PV : " + this.getPV()+
-                        "Arme : "+this.weaponName+
-                        "Attaque : " + (this.getForceAttaque()+this.weaponAttack) + "\n\n"
-                ;
+                        "Attaque : " + (this.getForceAttaque());
+
     }
 }
