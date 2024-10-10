@@ -7,8 +7,10 @@ import equipement.potion.Potion;
 public abstract class Personnage {
     private String name;
     private String type;
+    private int defaultPV;
     private int PV;
     private int forceAttaque;
+    private int defaultForceAttaque;
     private EquipementOffensif equipementOffensif;
     private EquipementDefensif equipementDefensif;
     private Potion potion;
@@ -48,9 +50,12 @@ public abstract class Personnage {
     public void setForceAttaque(int forceAttaque) {
         this.forceAttaque = forceAttaque;
     }
-
-
-
+    public int getDefaultForceAttaque() {
+        return defaultForceAttaque;
+    }
+    public int getDefaultPV() {
+        return defaultPV;
+    }
 
     public String toString() {
         return "";
