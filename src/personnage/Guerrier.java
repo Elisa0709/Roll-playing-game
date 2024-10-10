@@ -4,8 +4,9 @@ public class Guerrier extends Personnage {
 
     public Guerrier(String name) {
         super(name, "Guerrier");
-        super.setPV(10);;
+        super.setPV(10);
         super.setForceAttaque(10);
+
     }
 
     public String toString() {
