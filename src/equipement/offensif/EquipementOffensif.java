@@ -1,6 +1,6 @@
-package Equipement.Offensif;
+package equipement.offensif;
 
-import Equipement.Interactable;
+import equipement.Interactable;
 
 public abstract class EquipementOffensif implements Interactable {
 

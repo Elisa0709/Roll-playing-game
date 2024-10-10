@@ -1,4 +1,4 @@
-package Equipement.Defensif;
+package equipement.defensif;
 
 public class Bouclier extends EquipementDefensif{
 

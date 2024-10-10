@@ -1,6 +1,6 @@
-package Equipement.Offensif;
+package equipement.offensif;
 
-import Personnage.Personnage;
+import personnage.Personnage;
 
 public class FireBall extends EquipementOffensif {
 

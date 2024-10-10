@@ -1,6 +1,6 @@
-package Ennemis;
+package ennemis;
 
-import Equipement.Interactable;
+import equipement.Interactable;
 
 public abstract class Ennemi implements Interactable {
     private String enemyName;

@@ -1,8 +1,8 @@
-package Personnage;
+package personnage;
 
-import Equipement.Defensif.EquipementDefensif;
-import Equipement.Offensif.EquipementOffensif;
-import Equipement.Potion.Potion;
+import equipement.defensif.EquipementDefensif;
+import equipement.offensif.EquipementOffensif;
+import equipement.potion.Potion;
 
 public abstract class Personnage {
     private String name;

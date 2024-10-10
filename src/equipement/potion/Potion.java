@@ -1,5 +1,5 @@
-package Equipement.Potion;
-import Equipement.Interactable;
+package equipement.potion;
+import equipement.Interactable;
 
 public abstract class Potion implements Interactable {
     private String potionName;

@@ -1,6 +1,6 @@
-package Ennemis;
+package ennemis;
 
-import Personnage.Personnage;
+import personnage.Personnage;
 
 public class Gobelin extends Ennemi{
     public Gobelin(){

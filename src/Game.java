@@ -1,8 +1,13 @@
-import Personnage.Personnage;
-import Personnage.Guerrier;
-import Personnage.Magicien;
-import Exceptions.PlayerPositionException;
-
+import ennemis.Dragon;
+import ennemis.Gobelin;
+import ennemis.Sorcier;
+import equipement.offensif.*;
+import equipement.potion.BigPotion;
+import equipement.potion.NormalPotion;
+import personnage.Personnage;
+import personnage.Guerrier;
+import personnage.Magicien;
+import exceptions.PlayerPositionException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -135,5 +140,73 @@ public class Game {
                  player = new Magicien(name);
                  break;
         }
+    }
+
+    private void fillBoard(ArrayList board) {
+        board.add(new Eclair()); // Case 1
+        board.add(new Massue()); // Case 2
+        board.add(new Gobelin()); // Case 3
+        board.add(new Eclair()); // Case 4
+        board.add(new Massue()); // Case 5
+        board.add(new Gobelin()); // Case 6
+        board.add(new NormalPotion()); // Case 7
+        board.add(new Eclair()); // Case 8
+        board.add(new Gobelin()); // Case 9
+        board.add(new Sorcier()); // Case 10
+        board.add(new Massue()); // Case 11
+        board.add(new Gobelin()); // Case 12
+        board.add(new NormalPotion()); // Case 13
+        board.add(new CaseVide()); // Case 14
+        board.add(new Gobelin()); // Case 15
+        board.add(new CaseVide()); // Case 16
+        board.add(new Eclair()); // Case 17
+        board.add(new Gobelin()); // Case 18
+        board.add(new Epee()); // Case 19
+        board.add(new Sorcier()); // Case 20
+        board.add(new Gobelin()); // Case 21
+        board.add(new Massue()); // Case 22
+        board.add(new Eclair()); // Case 23
+        board.add(new Gobelin()); // Case 24
+        board.add(new Sorcier()); // Case 25
+        board.add(new Epee()); // Case 26
+        board.add(new Gobelin()); // Case 27
+        board.add(new BigPotion()); // Case 28
+        board.add(new CaseVide()); // Case 29
+        board.add(new Gobelin()); // Case 30
+        board.add(new NormalPotion()); // Case 31
+        board.add(new Sorcier()); // Case 32
+        board.add(new NormalPotion()); // Case 33
+        board.add(new CaseVide()); // Case 34
+        board.add(new Sorcier()); // Case 35
+        board.add(new Sorcier()); // Case 36
+        board.add(new Sorcier()); // Case 37
+        board.add(new Massue()); // Case 38
+        board.add(new NormalPotion()); // Case 39
+        board.add(new Sorcier()); // Case 40
+        board.add(new BigPotion()); // Case 41
+        board.add(new Epee()); // Case 42
+        board.add(new NormalPotion()); // Case 43
+        board.add(new Sorcier()); // Case 44
+        board.add(new Dragon()); // Case 45
+        board.add(new CaseVide()); // Case 46
+        board.add(new Sorcier()); // Case 47
+        board.add(new FireBall()); // Case 48
+        board.add(new FireBall()); // Case 49
+        board.add(new CaseVide()); // Case 50
+        board.add(new CaseVide()); // Case 51
+        board.add(new Dragon()); // Case 52
+        board.add(new Epee()); // Case 53
+        board.add(new CaseVide()); // Case 54
+        board.add(new CaseVide()); // Case 55
+        board.add(new Dragon()); // Case 56
+        board.add(new CaseVide()); // Case 57
+        board.add(new CaseVide()); // Case 58
+        board.add(new CaseVide()); // Case 59
+        board.add(new CaseVide()); // Case 60
+        board.add(new CaseVide()); // Case 61
+        board.add(new Dragon()); // Case 62
+        board.add(new CaseVide()); // Case 63
+        board.add(new CaseVide()); // Case 64
+
     }
 }

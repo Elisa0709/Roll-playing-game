@@ -1,6 +1,6 @@
-package Equipement;
+package equipement;
 
-import Personnage.Personnage;
+import personnage.Personnage;
 
 public interface Interactable {
     void interact(Personnage personnage);

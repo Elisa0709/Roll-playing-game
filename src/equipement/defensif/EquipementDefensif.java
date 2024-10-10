@@ -1,4 +1,4 @@
-package Equipement.Defensif;
+package equipement.defensif;
 
 public abstract class EquipementDefensif {
     private String itemName;
@@ -18,7 +18,7 @@ public abstract class EquipementDefensif {
     public void setDefenseLevel(int defenseLevel) {
         this.defenseLevel = defenseLevel;
     }
-    public void setItemName(String name) {
+    private void setItemName(String name) {
         this.itemName = name;
     }
 }

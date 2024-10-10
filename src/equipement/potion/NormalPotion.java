@@ -1,6 +1,6 @@
-package Equipement.Potion;
+package equipement.potion;
 
-import Personnage.Personnage;
+import personnage.Personnage;
 
 public class NormalPotion extends Potion {
     public NormalPotion() {
