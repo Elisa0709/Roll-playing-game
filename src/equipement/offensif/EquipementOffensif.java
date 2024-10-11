@@ -1,6 +1,7 @@
 package equipement.offensif;
 
 import equipement.Interactable;
+import personnage.Personnage;
 
 public abstract class EquipementOffensif implements Interactable {
 
@@ -26,5 +27,28 @@ public abstract class EquipementOffensif implements Interactable {
        return matchWithClass;
     }
 
+    private void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
 
+
+    @Override
+    public void interact(Personnage player) {
+        wait(350);
+        System.out.println(toString());
+        if (player.getType().equals(getMatchWithClass())) {
+            player.setForceAttaque(player.getDefaultForceAttaque() + getWeaponAttack());
+             System.out.println("Bravo, l'objet "+getWeaponName()+" augmente votre force de " + getWeaponAttack() +
+                    ". Votre force d'attaque total est maintenant de " +
+                    player.getForceAttaque());
+            System.out.println("player force : "+player.getForceAttaque());
+        }
+        else{
+            System.out.println("Votre classe ne vous permet pas d'équiper cet objet.");
+        }
+    }
 }

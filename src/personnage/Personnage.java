@@ -56,7 +56,12 @@ public abstract class Personnage {
     public int getDefaultPV() {
         return defaultPV;
     }
-
+    public void setDefaultForceAttaque(int defaultForceAttaque) {
+        this.defaultForceAttaque = defaultForceAttaque;
+    }
+    public void setDefaultPV(int defaultPV) {
+        this.defaultPV = defaultPV;
+    }
     public String toString() {
         return "";
     } //en mettre un par défaut

@@ -6,6 +6,8 @@ public class Guerrier extends Personnage {
         super(name, "Guerrier");
         super.setPV(10);
         super.setForceAttaque(10);
+        super.setDefaultForceAttaque(15);
+        super.setDefaultPV(10);
 
     }
 
@@ -32,7 +34,7 @@ public class Guerrier extends Personnage {
 
                         "Type :  Guerrier" + "\n" +
                         "PV : " + this.getPV()+
-                        "Attaque : " + (this.getForceAttaque());
+                        "     Attaque : " + (this.getForceAttaque());
 
     }
 }

@@ -30,8 +30,8 @@ public class Game {
         menu.displayIntro();
         createCharacter();
         menu.displayType(player.getType());
-        int choice = menu.choiceMenu();
-        executeChoiceMenu(choice);
+        int choice = menu.choiceStartMenu();
+        executeChoiceStartMenu(choice);
         while (playerPosition != 64) {
             playerChoice();
             getNewPlayerPosition(rollDice());
@@ -49,35 +49,35 @@ public class Game {
         }
     }
 
-    private void executeChoiceMenu(int choice) {
+    private void executeChoiceStartMenu(int choice) {
         switch (choice) {
             case 1:
                 System.out.println(player.toString());
                 wait(300);
-                int userchoice = menu.choiceMenu();
-                executeChoiceMenu(userchoice);
+                int userchoice = menu.choiceStartMenu();
+                executeChoiceStartMenu(userchoice);
                 break;
             case 2:
                 String name = menu.getUserName();
                 wait(300);
                 String type = menu.getUserType();
                 instancePlayer(name, type);
-                int menuChoice = menu.choiceMenu();
+                int menuChoice = menu.choiceStartMenu();
 
-                executeChoiceMenu(menuChoice);
+                executeChoiceStartMenu(menuChoice);
                 break;
             case 3:
                 break; //permet de sortir du menu choix et de continuer les instructions de game
             case 4:
-                System.out.println("A bientôt !");
+                menu.displayGoodbye();
                 wait(300);
                 System.exit(0);
                 break;
             default:
-                System.out.println("Choix invalide");
+                menu.displayInvalidChoice();
                 wait(6000);
-                menu.choiceMenu();
-                executeChoiceMenu(menu.choiceMenu());
+                menu.choiceStartMenu();
+                executeChoiceStartMenu(menu.choiceStartMenu());
                 break;
         }
     }
@@ -87,38 +87,25 @@ public class Game {
         return (int) ((range * Math.random()) + 1);
     }
 
-    private void getNewPlayerPosition(int dice) {
-        System.out.println("Votre lancé de dé : " + dice);
-        try {
-            playerPosition += dice;
-            menu.displayPlayerPosition(playerPosition);
-
-            if (playerPosition >= 64) {
-                throw new PlayerPositionException();
-            }
-        } catch (PlayerPositionException e) {
-            playerPosition = 64;
-        }
-    }
 
     private void isWinning() {
-        if (this.playerPosition == 64) {
-            System.out.println("Bravo, vous avez gagné !");
-            wait(300);
-            Scanner userChoiceInput = new Scanner(System.in);
-            menu.displayWinMenu();
-            int userChoice = userChoiceInput.nextInt(); //affichage (+en gaut) dans menu
-            switch (userChoice) {
-                case 1:
-                    initGame();
-                    break;
-                case 2:
-                    System.out.println("A bientôt !");
-                    wait(300);
-                    System.exit(0);
-                    break;
-            }
+        menu.displayVictory();
+        wait(300);
+        Scanner userChoiceInput = new Scanner(System.in);
+        menu.displayWinMenu();
+        int userChoice = userChoiceInput.nextInt();
+        switch (userChoice) {
+            case 1:
+                initGame();
+                break;
+            case 2:
+                menu.displayGoodbye();
+                wait(300);
+                System.exit(0);
+                break;
         }
+
+
     }
 
     private void playerChoice() {
@@ -129,9 +116,17 @@ public class Game {
             case 1:
                 break;
             case 2:
-                System.out.println("A bientôt !");
+                System.out.println(player.toString());
+                playerChoice();
+                break;
+            case 3:
+                menu.displayGoodbye();
                 wait(300);
                 System.exit(0);
+                break;
+            default :
+                menu.displayInvalidChoice();
+                playerChoice();
                 break;
         }
     }
@@ -154,6 +149,21 @@ public class Game {
                 break;
         }
     }
+
+    private void getNewPlayerPosition(int dice) {
+        menu.displayValueDaice(dice);
+        if (playerPosition + dice < 64) {
+            playerPosition += dice;
+            menu.displayPlayerPosition(playerPosition);
+        } else if (playerPosition + dice == 64) {
+            isWinning();
+        } else {
+            playerPosition = 64;
+            isWinning();
+
+        }
+    }
+
 
     private void fillBoard(ArrayList board) {
         board.add(new Eclair()); // Case 1

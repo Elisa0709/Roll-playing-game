@@ -4,8 +4,10 @@ public class Magicien extends Personnage {
 
     public Magicien(String name) {
         super(name, "Magicien"); //on attribut des arguments à la classe Personnage, le de la création d'un objet Magicien
-        this.setPV(6);
-        this.setForceAttaque(15);
+        super.setPV(6);
+        super.setForceAttaque(15);
+        super.setDefaultForceAttaque(15);
+        super.setDefaultPV(6);
     }
 
     public String toString() {
@@ -32,7 +34,7 @@ public class Magicien extends Personnage {
                 "Type : Magicien"  + "\n" +
                 "PV : " + this.getPV()+
 
-                "Attaque : " + (this.getForceAttaque()) + "\n\n"
+                "     Attaque : " + (this.getForceAttaque()) + "\n\n"
                 ;
     }
 }

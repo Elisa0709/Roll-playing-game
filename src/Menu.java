@@ -34,7 +34,7 @@ public class Menu {
         }
 
     }
-    public int choiceMenu() {
+    public int choiceStartMenu() {
         Scanner userChoiceInput = new Scanner(System.in);
         System.out.println("Par quoi on commence ?\n" +
                 "[1] Je veux voir mon personnage\n" +
@@ -58,16 +58,20 @@ public class Menu {
             "*------------------------------------------*\n"
         );
     }
+    public void displayValueDaice(int dice){
+        System.out.println("+-----+\n" +
+                "|  " + dice + "  |\n" +
+                "+-----+");
+    }
     public void displayPlayerPosition(int playerPosition) {
-        if (playerPosition <64) {
-            System.out.println("Vous êtes sur la case : " + playerPosition + "\n" +"____________________________\n");
-        }
-
+        System.out.println("Vous êtes sur la case "+playerPosition+" sur 64");
     }
     public void displayMenuRollDice(){
         System.out.println("A vous de jouer\n" +
                 "[1] Lancer le dé\n" +
-                "[2] Quitte le jeu\n"
+                "[2] Voir mes statistiques\n"+
+                "[3] Quitter le jeu"
+
         );
     }
     public void displayWinMenu(){
@@ -75,5 +79,48 @@ public class Menu {
                 "[1] Rejouer\n" +
                 "[2] Quitter le jeu\n");
     }
+    public void displayGoodbye(){
+        System.out.println(
+                "┌─────────────────────────────────────────┐\n" +
+                        "│  __     _     _            _   //\\  _   │\n" +
+                        "│  \\_\\   | |__ (_) ___ _ __ | |_|/_\\|| |_ │\n" +
+                        "│  /_\\   | '_ \\| |/ _ | '_ \\| __/ _ \\| __|│\n" +
+                        "│ / _ \\  | |_) | |  __| | | | || (_) | |_ │\n" +
+                        "│/_/ \\_\\ |_.__/|_|\\___|_| |_|\\__\\___/ \\__|│\n" +
+                        "└─────────────────────────────────────────┘"
+        );}
+    public void displayInvalidChoice(){
+        System.out.println(" ___  ___ \n" +
+        "|\"  \\/\"  |\n" +
+                " \\   \\  / \n" +
+                "  \\\\  \\/  \n" +
+                "  /\\.  \\  \n" +
+                " /  \\   \\ \n" +
+                "|___/\\___|\n" +
+                "Choix invalide !\n");
+    }
+    public void displayVictory(){
+        System.out.println(
+                " /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\ \n" +
+                        "( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )\n" +
+                        " > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < \n" +
+                        " /\\_/\\                                                                                      /\\_/\\ \n" +
+                        "( o.o )   ▄█    █▄   ▄█   ▄████████     ███      ▄██████▄   ▄█     ▄████████    ▄████████  ( o.o )\n" +
+                        " > ^ <   ███    ███ ███  ███    ███ ▀█████████▄ ███    ███ ███    ███    ███   ███    ███   > ^ < \n" +
+                        " /\\_/\\   ███    ███ ███▌ ███    █▀     ▀███▀▀██ ███    ███ ███▌   ███    ███   ███    █▀    /\\_/\\ \n" +
+                        "( o.o )  ███    ███ ███▌ ███            ███   ▀ ███    ███ ███▌  ▄███▄▄▄▄██▀  ▄███▄▄▄      ( o.o )\n" +
+                        " > ^ <   ███    ███ ███▌ ███            ███     ███    ███ ███▌ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀       > ^ < \n" +
+                        " /\\_/\\   ███    ███ ███  ███    █▄      ███     ███    ███ ███  ▀███████████   ███    █▄    /\\_/\\ \n" +
+                        "( o.o )  ███    ███ ███  ███    ███     ███     ███    ███ ███    ███    ███   ███    ███  ( o.o )\n" +
+                        " > ^ <    ▀██████▀  █▀   ████████▀     ▄████▀    ▀██████▀  █▀     ███    ███   ██████████   > ^ < \n" +
+                        " /\\_/\\                                                            ███    ███                /\\_/\\ \n" +
+                        "( o.o )                                                                                    ( o.o )\n" +
+                        " > ^ <                                                                                      > ^ < \n" +
+                        " /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\ \n" +
+                        "( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )( o.o )\n" +
+                        " > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < "
+        );
+    }
+
 }
 
