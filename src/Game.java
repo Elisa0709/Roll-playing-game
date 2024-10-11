@@ -1,26 +1,24 @@
+import Interfaces.Interactable;
 import ennemis.Dragon;
 import ennemis.Gobelin;
 import ennemis.Sorcier;
-import equipement.Interactable;
 import equipement.offensif.*;
 import equipement.potion.BigPotion;
 import equipement.potion.NormalPotion;
 import personnage.Personnage;
 import personnage.Guerrier;
 import personnage.Magicien;
-import exceptions.PlayerPositionException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    Menu menu;
+    Menu menu= new Menu();;
     private Personnage player;
     private ArrayList<Interactable> board;
     private int playerPosition;
 
     public Game() {
-        this.menu = new Menu();
         this.playerPosition = 0;
         this.board = new ArrayList<>();
     }
@@ -37,6 +35,7 @@ public class Game {
             getNewPlayerPosition(rollDice());
             interactWithCase(playerPosition, player);
             wait(300);
+            //isAlive
         }
         isWinning();
     }
@@ -120,6 +119,9 @@ public class Game {
                 playerChoice();
                 break;
             case 3:
+                drinkPotion();
+                break;
+            case 4:
                 menu.displayGoodbye();
                 wait(300);
                 System.exit(0);
@@ -130,7 +132,36 @@ public class Game {
                 break;
         }
     }
+    private void drinkPotion(){
+        Scanner userChoiceInput = new Scanner(System.in);
+        menu.displayPotionMenu();
+        int userChoice = userChoiceInput.nextInt();
+        switch (userChoice) {
+            case 1:
+                if(player.getNbPotion()>=1){
+                    player.setNbPotion(player.getNbPotion()-1);
+                    player.setPV(player.getPV()+2);
+                    menu.displayPotionDrunk();
 
+                }
+                else{
+                    menu.displayNoPotionInStock();
+                }
+                playerChoice();
+                break;
+            case 2 :
+                if(player.getNbGrandePotion()>=1){
+                    player.setNbGrandePotion(player.getNbGrandePotion()-1);
+                    player.setPV(player.getPV()+5);
+                    menu.displayPotionDrunk();
+                }
+                else{
+                    menu.displayNoBigPotionInStock();
+                }
+                playerChoice();
+                break;
+        }
+    }
     private void createCharacter() {
         String name = menu.getUserName();
         wait(400);
@@ -138,7 +169,6 @@ public class Game {
         wait(800);
         instancePlayer(name, type);
     }
-
     private void instancePlayer(String name, String type) {
         switch (type) {
             case "Guerrier":
@@ -149,9 +179,8 @@ public class Game {
                 break;
         }
     }
-
     private void getNewPlayerPosition(int dice) {
-        menu.displayValueDaice(dice);
+        menu.displayValueDice(dice);
         if (playerPosition + dice < 64) {
             playerPosition += dice;
             menu.displayPlayerPosition(playerPosition);
@@ -163,8 +192,6 @@ public class Game {
 
         }
     }
-
-
     private void fillBoard(ArrayList board) {
         board.add(new Eclair()); // Case 1
         board.add(new Massue()); // Case 2
@@ -232,9 +259,9 @@ public class Game {
         board.add(new CaseVide()); // Case 64
 
     }
-
     private void interactWithCase(int playerPosition, Personnage player) {
         Interactable objet = board.get(playerPosition);
-        objet.interact(player);
+        objet.interact(player, this.menu);
     }
+
 }

@@ -1,4 +1,4 @@
-import equipement.Interactable;
+import Interfaces.Interactable;
 import personnage.Personnage;
 
 public class CaseVide implements Interactable {

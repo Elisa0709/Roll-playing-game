@@ -33,8 +33,11 @@ public class Guerrier extends Personnage {
                         "*-------------------------------------------*" + "\n" +
 
                         "Type :  Guerrier" + "\n" +
-                        "PV : " + this.getPV()+
-                        "     Attaque : " + (this.getForceAttaque());
+                        "PV : " + this.getPV() +
+                        "     Attaque : " + (this.getForceAttaque() +"\n"+
+                        "Inventaire : \n" +
+                        "- " + this.getNbPotion() + " potion(s)\n" +
+                        "- " + this.getNbGrandePotion() + " grande(s) potion(s)\n");
 
     }
 }

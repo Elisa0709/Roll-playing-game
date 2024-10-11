@@ -7,9 +7,11 @@ public class NormalPotion extends Potion {
         super("Petite potion", 2);
     }
 
+
     @Override
-    public String toString() {
-        return "Vous avez trouvé une potion !\n"+
+    public void interact(Personnage player) {
+        player.setNbPotion(player.getNbPotion() + 1);
+        System.out.println( "Vous avez trouvé une potion !\n"+
                 "⠀⠀⠀⠀⠀⢀⣠⠤⠤⢤⡀⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⠀⢿⠑⠒⠂⠉⡇⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⢀⠼⣄⣀⣀⣠⠗⡄⠀⠀⠀⠀⠀\n" +
@@ -17,13 +19,12 @@ public class NormalPotion extends Potion {
                 "⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⢸⡀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⢀⡴⠊⠀⠀⠀⠀⠀⠀⠈⠑⢦⡀⠀⠀\n" +
                 "⠀⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀\n" +
-                "⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟\n" +
+                "⢰⠁⠀⠀⠀POTION⠀⠀⠀⠀⠸⡄\n" +
+                "⢸⠀⠀         ⠀⠀⠀⠀⡇\n" +
+                "⢸⠀⠀⠀⠀⠀⠀2 PV⠀⠀⠀⠀⠀⡟\n" +
                 "⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏\n" +
                 "⠀⠳⢤⣀⡀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡤⠞⠁\n" +
-                "⠀⠀⠀⠈⠉⠉⠉⠛⠛⠋⠉⠉⠉⠁⠀⠀⠀\n"+
-                "Vos points de vie augmentent de "+this.getHeal();
-
+                "⠀⠀⠀⠈⠉⠉⠉⠛⠛⠋⠉⠉⠉⠁⠀⠀⠀\n");
     }
 }
+

@@ -9,7 +9,7 @@ public class Massue extends EquipementOffensif {
     }
 
     public String toString() {
-        return "Vous trouvez un gourdin \n"+
+        return "Vous trouvez une massue \n"+
                 " ⢀⣠⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                 "⣾⣿⣿⣿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                 "⢻⣿⢻⣿⣿⣿⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +

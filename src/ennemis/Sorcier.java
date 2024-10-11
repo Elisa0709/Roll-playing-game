@@ -4,15 +4,25 @@ import personnage.Personnage;
 
 public class Sorcier extends Ennemi{
     public Sorcier(){
-        super("Sorcier", 9, 2);
+        super("Sorcier", 17, 2);
     }
 
     @Override
-    public void interact(Personnage personnage) {
-        System.out.println("Je suis un ennemi de type sorcier");
+    public String toString() {
+        return "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠁⠀⢣⣀⠇⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠀⡰⠊⢀⠀⣀⡇⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀⠰⠁⢤⠊⢢⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⢀⠃⠀⠀⠋⠙⠀⠀⠰⡀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⢀⣠⠧⠒⠉⠉⠉⠉⠁⠶⠤⣵⡀⠀⠀⠀⠀⠀\n" +
+                "⠀⡠⢒⡨⠅⢠⣶⢖⠀⠀⠲⢴⠆⠀⢢⢠⡬⢅⡐⠤⡀⠀\n" +
+                "⠊⠐⠁⠀⠀⠆⡇⠀⠿⠿⣀⡀⠿⠿⠀⡷⢰⠀⠈⠑⠎⢢\n" +
+                "⠣⠌⠲⠄⠸⣼⣃⠠⠂⡉⠀⠈⣉⠂⠄⣷⡼⠀⠠⣄⣂⠜\n" +
+                "⠀⠀⠀⠀⠀⢸⢊⠉⡁⠀⠈⠁⠀⠉⠉⢱⡆⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⢠⠃⢩⠎⢧⠀⠀⠐⢰⡜⠶⡁⠸⡀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⡶⠤⡮⠀⠀⠑⢆⡐⠃⠀⠀⡗⠒⢵⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠦⡴⠂⠀⠀⠀⠈⠀⠀⠀⠀⠓⢧⠔⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠓⢤⠤⣤⠤⠤⠤⠤⣤⠤⡤⠘⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠃⠠⠤⠋⠀⠀⠑⠤⠀⠜⠀⠀⠀";
     }
-
-
-
-
 }

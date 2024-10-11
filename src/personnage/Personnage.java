@@ -13,7 +13,10 @@ public abstract class Personnage {
     private int defaultForceAttaque;
     private EquipementOffensif equipementOffensif;
     private EquipementDefensif equipementDefensif;
-    private Potion potion;
+    private int nbPotion;
+    private int nbGrandePotion;
+
+//    private Potion potion;
 
     public Personnage() {
         this("Toto");
@@ -24,6 +27,8 @@ public abstract class Personnage {
     public Personnage(String name, String type) {
         this.name = name;
         this.type = type;
+        this.nbPotion = 0;
+        this.nbGrandePotion = 0;
     }
 
     public String getName() {
@@ -65,6 +70,16 @@ public abstract class Personnage {
     public String toString() {
         return "";
     } //en mettre un par défaut
-
-
+    public int getNbGrandePotion() {
+        return nbGrandePotion;
+    }
+    public int getNbPotion() {
+        return nbPotion;
+    }
+    public void setNbGrandePotion(int nbGrandePotion) {
+        this.nbGrandePotion = nbGrandePotion;
+    }
+    public void setNbPotion(int nbPotion) {
+        this.nbPotion = nbPotion;
+    }
 }

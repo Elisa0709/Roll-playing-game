@@ -9,8 +9,9 @@ public class BigPotion extends Potion {
 
 
     @Override
-    public String toString() {
-        return "Vous avez trouvé une GRANDE potion !\n"+
+    public void interact(Personnage player) {
+        player.setNbGrandePotion(player.getNbGrandePotion() + 1);
+        System.out.println( "Vous avez trouvé une GRANDE potion !\n"+
                 "⠀⠀⠀⠀⠀⢀⣠⠤⠤⢤⡀⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⠀⢿⠑⠒⠂⠉⡇⠀⠀⠀⠀⠀⠀\n" +
                 "⠀⠀⠀⠀⢀⠼⣄⣀⣀⣠⠗⡄⠀⠀⠀⠀⠀\n" +
@@ -20,17 +21,13 @@ public class BigPotion extends Potion {
                 "⠀⠀⢀⡴⠊⠀⠀⠀⠀⠀⠀⠈⠑⢦⡀⠀⠀\n" +
                 "⠀⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀\n" +
                 "⢰⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟\n" +
-                "⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣳\n" +
+                "⢸⠀⠀⠀⠀GRANDE⠀⠀⠀⠀⠀⡇\n" +
+                "⢰⠀   POTION⠀⠀⠀⠀⠀⣳\n" +
                 "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢼\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾\n" +
-                "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡟\n" +
+                "⢸⠀⠀⠀⠀⠀5 PV⠀⠀⠀⠀⠀ ⣾\n" +
                 "⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡏\n" +
                 "⠀⠳⢤⣀⡀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡤⠞⠁\n" +
-                "⠀⠀⠀⠈⠉⠉⠉⠛⠛⠋⠉⠉⠉⠁⠀⠀⠀\n"+
-                "Vos points de vie augmentent de "+this.getHeal();
+                "⠀⠀⠀⠈⠉⠉⠉⠛⠛⠋⠉⠉⠉⠁⠀⠀⠀\n");
 
     }
 }

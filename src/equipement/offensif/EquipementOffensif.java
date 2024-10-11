@@ -1,6 +1,6 @@
 package equipement.offensif;
 
-import equipement.Interactable;
+import Interfaces.Interactable;
 import personnage.Personnage;
 
 public abstract class EquipementOffensif implements Interactable {

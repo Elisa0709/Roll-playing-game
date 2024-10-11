@@ -1,6 +1,5 @@
 package equipement.potion;
-import equipement.Interactable;
-import personnage.Personnage;
+import Interfaces.Interactable;
 
 public abstract class Potion implements Interactable {
     private String potionName;
@@ -21,21 +20,11 @@ public abstract class Potion implements Interactable {
     public String getPotionName() {
         return potionName;
     }
-    public void setPostionName(String potionName) {
-        this.potionName = potionName;
-    }
     public int getHeal() {
         return heal;
     }
-    public void setHeal(int heal) {
-        this.heal = heal;
-    }
+}
 
-    @Override
-        public void interact(Personnage player) {
-                player.setPV(player.getPV() + this.heal);
-                System.out.println(toString());
-        }
-    }
+
 
 

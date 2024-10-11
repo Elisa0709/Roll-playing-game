@@ -58,7 +58,7 @@ public class Menu {
             "*------------------------------------------*\n"
         );
     }
-    public void displayValueDaice(int dice){
+    public void displayValueDice(int dice){
         System.out.println("+-----+\n" +
                 "|  " + dice + "  |\n" +
                 "+-----+");
@@ -69,10 +69,26 @@ public class Menu {
     public void displayMenuRollDice(){
         System.out.println("A vous de jouer\n" +
                 "[1] Lancer le dé\n" +
-                "[2] Voir mes statistiques\n"+
-                "[3] Quitter le jeu"
-
+                "[2] Voir mon personnage\n"+
+                "[3] Boire une potion\n"+
+                "[4] Quitter le jeu"
         );
+    }
+    public void displayPotionMenu(){
+        System.out.println("Quelle potion voulez-vous boire ?\n" +
+                "[1] Potion ( +2 PV )\n" +
+                "[2] Grande potion ( +5 PV)");
+    }
+    public void displayNoPotionInStock(){
+        System.out.println("Bien essayé, mais vous n'avez pas de potion.\n" +
+                "Dommage.");
+    }
+    public void displayNoBigPotionInStock(){
+        System.out.println("Bien essayé, mais vous n'avez pas de grande potion.\n" +
+                "Dommage.");
+    }
+    public void displayPotionDrunk(){
+        System.out.println("Vous avez bu une potion.");
     }
     public void displayWinMenu(){
         System.out.println(
@@ -99,6 +115,14 @@ public class Menu {
                 "|___/\\___|\n" +
                 "Choix invalide !\n");
     }
+    public void displayInteractMenu(int pv, String name){
+        System.out.println("Vous rencontrez un gobelin\n" +
+                "Points de vie : " + pv + "\n" +
+                "Force d'attaque " + name + "\n");
+    }
+
+
+
     public void displayVictory(){
         System.out.println(
                 " /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\  /\\_/\\ \n" +
