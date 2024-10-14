@@ -39,7 +39,7 @@ public abstract class EquipementOffensif implements Interactable {
     @Override
     public void interact(Personnage player) {
         wait(350);
-        System.out.println(toString());
+        System.out.println(this);
         if (player.getType().equals(getMatchWithClass())) {
             player.setForceAttaque(player.getDefaultForceAttaque() + getWeaponAttack());
              System.out.println("Bravo, l'objet "+getWeaponName()+" augmente votre force de " + getWeaponAttack() +

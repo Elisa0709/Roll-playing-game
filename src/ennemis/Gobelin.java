@@ -8,7 +8,7 @@ public class Gobelin extends Ennemi{
     }
 
     @Override
-    public String toString() {
+    public String getPicture() {
         return
                 "⠀⣄⣀⠀⠀⠀⠀⠀⢀⡤⠒⠒⠒⠤⢄⡀⠀⠀⣀⣀⣀⣀⡠⣤⠀⠀⠀\n" +
                         "⠀⠙⢦⡩⣝⡒⠒⣲⠇⠀⠀⠀⠀⠀⠰⠚⢉⠥⠤⣴⣢⠔⠋⠁⠀⠀⠀\n" +
@@ -30,4 +30,6 @@ public class Gobelin extends Ennemi{
                         "⠀⠀⠀⠀⣶⣯⡄⢀⡤⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣽⡀⣘⡄⠀⠀⠀\n" +
                         "⠀⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠓⠓⠟⠋⠀⠀";
     }
+
+
 }

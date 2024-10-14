@@ -1,5 +1,6 @@
 import Interfaces.Interactable;
 import ennemis.Dragon;
+import ennemis.Ennemi;
 import ennemis.Gobelin;
 import ennemis.Sorcier;
 import equipement.offensif.*;
@@ -13,9 +14,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    Menu menu= new Menu();;
+    private final Menu menu = new Menu();
+    ;
     private Personnage player;
-    private ArrayList<Interactable> board;
+    private final ArrayList<Interactable> board;
     private int playerPosition;
 
     public Game() {
@@ -23,8 +25,23 @@ public class Game {
         this.board = new ArrayList<>();
     }
 
+    /**
+     * Initialise et lance le jeu
+     * Effectue les opérations :
+     * remplir l'arrayList représentant le plateau
+     * Afficher le message d'introduction du jeu
+     * Lance la création de personnage
+     * Permet à l'utilisateur de choisir la classe (type) de son personnage
+     * Affiche le menu permettant de commencer la partie
+     * exécute le choix du menu précédent
+     * Tant que le joueur n'a pas gagné
+     * Affiche le menu permettant au joueur d'effectuer une action
+     * Le joueur lance le dé et sa position change en fonction du résultat
+     * le joueur interagit avec l'objet présent sur la case où il se trouve
+     * Quand le joueur a gagné, est en position 64, on lance l'affichage et la gestion de fin de partie.
+     */
     public void initGame() {
-        fillBoard(this.board);
+        fillBoard();
         menu.displayIntro();
         createCharacter();
         menu.displayType(player.getType());
@@ -34,51 +51,46 @@ public class Game {
             playerChoice();
             getNewPlayerPosition(rollDice());
             interactWithCase(playerPosition, player);
-            wait(300);
-            //isAlive
+            menu.wait(300);
         }
         isWinning();
     }
 
-    private void wait(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
     private void executeChoiceStartMenu(int choice) {
         switch (choice) {
             case 1:
                 System.out.println(player.toString());
-                wait(300);
+                menu.wait(300);
                 int userchoice = menu.choiceStartMenu();
                 executeChoiceStartMenu(userchoice);
                 break;
             case 2:
                 String name = menu.getUserName();
-                wait(300);
+                menu.wait(300);
                 String type = menu.getUserType();
                 instancePlayer(name, type);
                 int menuChoice = menu.choiceStartMenu();
-
                 executeChoiceStartMenu(menuChoice);
                 break;
             case 3:
                 break; //permet de sortir du menu choix et de continuer les instructions de game
             case 4:
-                menu.displayGoodbye();
-                wait(300);
-                System.exit(0);
+                quitGame();
                 break;
             default:
                 menu.displayInvalidChoice();
-                wait(6000);
+                menu.wait(6000);
                 menu.choiceStartMenu();
                 executeChoiceStartMenu(menu.choiceStartMenu());
                 break;
         }
+    }
+
+    private void quitGame(){
+        menu.displayGoodbye();
+        menu.wait(300);
+        System.exit(0);
     }
 
     private int rollDice() {
@@ -86,12 +98,15 @@ public class Game {
         return (int) ((range * Math.random()) + 1);
     }
 
-
     private void isWinning() {
         menu.displayVictory();
-        wait(300);
+        menu.wait(300);
+        endGameChoices();
+    }
+
+    private void endGameChoices(){
         Scanner userChoiceInput = new Scanner(System.in);
-        menu.displayWinMenu();
+        menu.displayEndMenu();
         int userChoice = userChoiceInput.nextInt();
         switch (userChoice) {
             case 1:
@@ -99,12 +114,10 @@ public class Game {
                 break;
             case 2:
                 menu.displayGoodbye();
-                wait(300);
+                menu.wait(300);
                 System.exit(0);
                 break;
         }
-
-
     }
 
     private void playerChoice() {
@@ -122,53 +135,54 @@ public class Game {
                 drinkPotion();
                 break;
             case 4:
-                menu.displayGoodbye();
-                wait(300);
-                System.exit(0);
+                quitGame();
                 break;
-            default :
+            default:
                 menu.displayInvalidChoice();
                 playerChoice();
                 break;
         }
     }
-    private void drinkPotion(){
+
+    private void drinkPotion() {
         Scanner userChoiceInput = new Scanner(System.in);
         menu.displayPotionMenu();
         int userChoice = userChoiceInput.nextInt();
         switch (userChoice) {
             case 1:
-                if(player.getNbPotion()>=1){
-                    player.setNbPotion(player.getNbPotion()-1);
-                    player.setPV(player.getPV()+2);
+                if (player.getNbPotion() >= 1) {
+                    player.setNbPotion(player.getNbPotion() - 1);
+                    player.setPV(player.getPV() + 2);
                     menu.displayPotionDrunk();
+                    playerChoice();
+
+                } else {
+                    menu.displayNoPotionInStock();
+                    playerChoice();
+                }
+                break;
+            case 2:
+                if (player.getNbGrandePotion() >= 1) {
+                    player.setNbGrandePotion(player.getNbGrandePotion() - 1);
+                    player.setPV(player.getPV() + 5);
+                    menu.displayPotionDrunk();
+                } else {
+                    menu.displayNoBigPotionInStock();
+                    playerChoice();
 
                 }
-                else{
-                    menu.displayNoPotionInStock();
-                }
-                playerChoice();
-                break;
-            case 2 :
-                if(player.getNbGrandePotion()>=1){
-                    player.setNbGrandePotion(player.getNbGrandePotion()-1);
-                    player.setPV(player.getPV()+5);
-                    menu.displayPotionDrunk();
-                }
-                else{
-                    menu.displayNoBigPotionInStock();
-                }
-                playerChoice();
                 break;
         }
     }
+
     private void createCharacter() {
         String name = menu.getUserName();
-        wait(400);
+        menu.wait(400);
         String type = menu.getUserType();
-        wait(800);
+        menu.wait(800);
         instancePlayer(name, type);
     }
+
     private void instancePlayer(String name, String type) {
         switch (type) {
             case "Guerrier":
@@ -179,6 +193,7 @@ public class Game {
                 break;
         }
     }
+
     private void getNewPlayerPosition(int dice) {
         menu.displayValueDice(dice);
         if (playerPosition + dice < 64) {
@@ -192,7 +207,8 @@ public class Game {
 
         }
     }
-    private void fillBoard(ArrayList board) {
+
+    private void fillBoard() {
         board.add(new Eclair()); // Case 1
         board.add(new Massue()); // Case 2
         board.add(new Gobelin()); // Case 3
@@ -259,9 +275,42 @@ public class Game {
         board.add(new CaseVide()); // Case 64
 
     }
+
+    private void isPlayerDead(Personnage player){
+        int playerPV = player.getPV();
+        if(playerPV <= 0){
+            menu.displayDeadPlayer();
+            endGameChoices();
+        }
+
+    }
+
+    private void ennemyInteraction(Ennemi ennemi, Personnage player){
+        menu.displayEnemyStatistic(ennemi);
+        int userChoice = menu.displayFightMenu();
+        switch (userChoice) {
+            case 1:
+                ennemi.interact(player);
+                isPlayerDead(player);
+                menu.displayEndAttack(ennemi);
+                break;
+            case 2:
+                System.out.println(player.toString());
+                ennemyInteraction(ennemi, player);
+                break;
+            case 3:
+                quitGame();
+                break;
+        }
+    }
+
     private void interactWithCase(int playerPosition, Personnage player) {
-        Interactable objet = board.get(playerPosition);
-        objet.interact(player, this.menu);
+        Interactable object = board.get(playerPosition);
+        if (board.get(playerPosition) instanceof Ennemi) {
+            ennemyInteraction((Ennemi) object, player);
+        } else {
+            object.interact(player);
+        }
     }
 
 }

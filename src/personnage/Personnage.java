@@ -67,9 +67,7 @@ public abstract class Personnage {
     public void setDefaultPV(int defaultPV) {
         this.defaultPV = defaultPV;
     }
-    public String toString() {
-        return "";
-    } //en mettre un par défaut
+
     public int getNbGrandePotion() {
         return nbGrandePotion;
     }
