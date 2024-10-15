@@ -1,4 +1,7 @@
 import ennemis.Ennemi;
+import equipement.offensif.EquipementOffensif;
+import personnage.Personnage;
+
 import java.util.Scanner;
 public class Menu {
     /**
@@ -193,6 +196,22 @@ public class Menu {
                 " /  \\   \\ \n" +
                 "|___/\\___|\n" +
                 "Choix invalide !\n");
+    }
+
+    public void displayLootEquipementOffensif(EquipementOffensif equipement, Personnage player){
+        System.out.println(equipement.toString());
+        System.out.println("Bravo, l'objet "+equipement.getWeaponName()+" augmente votre force de " + equipement.getWeaponAttack() +
+                ". Votre force d'attaque total est maintenant de " +
+                (player.getForceAttaque()+equipement.getWeaponAttack()));
+    }
+
+    /**
+     * Affiche un mesage d'erreur si le player essaye d'équiper une arme incompatible avec sa classe
+     */
+    public void displayInvalidLoot(EquipementOffensif equipement){
+        System.out.println(equipement.toString());
+         System.out.println("Votre classe ne vous permet pas d'équiper cet objet.");
+
     }
 
     /**

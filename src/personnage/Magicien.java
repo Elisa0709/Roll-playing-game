@@ -4,7 +4,7 @@ public class Magicien extends Personnage {
 
     public Magicien(String name) {
         super(name, "Magicien"); //on attribut des arguments à la classe Personnage, le de la création d'un objet Magicien
-        super.setPV(6);
+        super.setPv(6);
         super.setForceAttaque(15);
         super.setDefaultForceAttaque(15);
         super.setDefaultPV(6);
@@ -32,13 +32,10 @@ public class Magicien extends Personnage {
                 "*-------------------------------------------*" + "\n" +
 
                 "Type : Magicien"  + "\n" +
-                "PV : " + this.getPV()+
-
-                "     Attaque : " + this.getForceAttaque() + "\n" +
+                "     Attaque : " + (this.getForceAttaque() + " + "+this.equipementOffensif.getWeaponAttack()+"\n"+
                 "Inventaire : \n" +
-                "- "+ this.getNbPotion()+" potion(s)\n" +
-                "- "+ this.getNbGrandePotion()+" grande(s) potion(s)\n"
-
-                ;
+                "- Equipement offensif : " + this.equipementOffensif.getWeaponName() +"  +"+this.equipementOffensif.getWeaponAttack()+" force d'attaque\n"+
+                "- " + this.getNbPotion() + " potion(s)\n" +
+                "- " + this.getNbGrandePotion() + " grande(s) potion(s)\n");
     }
 }

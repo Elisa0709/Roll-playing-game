@@ -6,6 +6,7 @@ import ennemis.Sorcier;
 import equipement.offensif.*;
 import equipement.potion.BigPotion;
 import equipement.potion.NormalPotion;
+import equipement.potion.Potion;
 import personnage.Personnage;
 import personnage.Guerrier;
 import personnage.Magicien;
@@ -15,7 +16,7 @@ import java.util.Scanner;
 
 public class Game {
     private final Menu menu = new Menu();
-    ;
+
     private Personnage player;
     private final ArrayList<Interactable> board;
     private int playerPosition;
@@ -152,7 +153,7 @@ public class Game {
             case 1:
                 if (player.getNbPotion() >= 1) {
                     player.setNbPotion(player.getNbPotion() - 1);
-                    player.setPV(player.getPV() + 2);
+                    player.setPv(player.getPv() + 2);
                     menu.displayPotionDrunk();
                     playerChoice();
 
@@ -164,7 +165,7 @@ public class Game {
             case 2:
                 if (player.getNbGrandePotion() >= 1) {
                     player.setNbGrandePotion(player.getNbGrandePotion() - 1);
-                    player.setPV(player.getPV() + 5);
+                    player.setPv(player.getPv() + 5);
                     menu.displayPotionDrunk();
                 } else {
                     menu.displayNoBigPotionInStock();
@@ -172,6 +173,9 @@ public class Game {
 
                 }
                 break;
+            default:
+                menu.displayInvalidChoice();
+                drinkPotion();
         }
     }
 
@@ -190,6 +194,8 @@ public class Game {
                 break;
             case "Magicien":
                 player = new Magicien(name);
+                break;
+            default:
                 break;
         }
     }
@@ -277,7 +283,7 @@ public class Game {
     }
 
     private void isPlayerDead(Personnage player){
-        int playerPV = player.getPV();
+        int playerPV = player.getPv();
         if(playerPV <= 0){
             menu.displayDeadPlayer();
             endGameChoices();
@@ -301,6 +307,22 @@ public class Game {
             case 3:
                 quitGame();
                 break;
+            default:
+                menu.displayInvalidChoice();
+                menu.wait(400);
+                ennemyInteraction(ennemi, player);
+                break;
+        }
+    }
+
+    private void armeInteraction(Personnage player, EquipementOffensif equipement){
+        if (equipement.getMatchWithClass() == player.getType()){
+            player.setEquipementOffensif(equipement);
+            menu.displayLootEquipementOffensif(equipement, player);
+        }
+        else{
+
+            menu.displayInvalidLoot(equipement);
         }
     }
 
@@ -308,7 +330,10 @@ public class Game {
         Interactable object = board.get(playerPosition);
         if (board.get(playerPosition) instanceof Ennemi) {
             ennemyInteraction((Ennemi) object, player);
-        } else {
+        } else if (board.get(playerPosition) instanceof EquipementOffensif){
+            armeInteraction(player, (EquipementOffensif) object);
+        }
+        else{
             object.interact(player);
         }
     }

@@ -1,14 +1,15 @@
 package personnage;
 
+import equipement.offensif.EquipementOffensif;
+
 public class Guerrier extends Personnage {
 
     public Guerrier(String name) {
         super(name, "Guerrier");
-        super.setPV(10);
+        super.setPv(10);
         super.setForceAttaque(10);
         super.setDefaultForceAttaque(15);
         super.setDefaultPV(10);
-
     }
 
     public String toString() {
@@ -33,9 +34,10 @@ public class Guerrier extends Personnage {
                         "*-------------------------------------------*" + "\n" +
 
                         "Type :  Guerrier" + "\n" +
-                        "PV : " + this.getPV() +
-                        "     Attaque : " + (this.getForceAttaque() +"\n"+
+                        "PV : " + this.getPv() +
+                        "     Attaque : " + (this.getForceAttaque() + " + "+this.equipementOffensif.getWeaponAttack()+"\n"+
                         "Inventaire : \n" +
+                        "- Equipement offensif : " + this.equipementOffensif.getWeaponName() +"  +"+this.equipementOffensif.getWeaponAttack()+" force d'attaque\n"+
                         "- " + this.getNbPotion() + " potion(s)\n" +
                         "- " + this.getNbGrandePotion() + " grande(s) potion(s)\n");
 
