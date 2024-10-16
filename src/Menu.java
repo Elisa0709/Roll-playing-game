@@ -198,13 +198,15 @@ public class Menu {
     public int displayFightMenu() {
         System.out.println("*______________________________________*\n" +
                 "A vous de jouer\n" +
-                "[1] à l'attaque !\n" +
-                "[2] voir mes statistiques\n" +
-                "[3] c'est trop pour moi, je quitte le jeu");
+                "[1] A l'attaque !\n" +
+                "[2] Voir mes statistiques\n" +
+                "[3] Fuir lâchement ...");
         Scanner userChoiceInput = new Scanner(System.in);
         return userChoiceInput.nextInt();
     }
-
+    public void displayPlayerPositionAfterReverse(int playerPosition, int nbReverse){
+        System.out.println("Vous reculez de "+nbReverse + " cases et retournez en position "+playerPosition);
+    }
     /**
      * Affiche les caractéristiques de l'ennemi présent. PV et nom.
      * @param ennemi objet représentant l'ennemi à affronter et qui implémente la classe abstraite Ennemi

@@ -314,6 +314,12 @@ public class Game {
 
     }
 
+    private int getBackwardsPosition(){
+        int nbReverse = randomInt(1,6);
+        this.playerPosition -= nbReverse;
+        return nbReverse;
+    }
+
     private void ennemyInteraction(Ennemi ennemi, Personnage player) {
         menu.displayEnemyStatistic(ennemi);
         int userChoice = menu.displayFightMenu();
@@ -329,7 +335,8 @@ public class Game {
                 ennemyInteraction(ennemi, player);
                 break;
             case 3:
-                quitGame();
+                int nbReverse = getBackwardsPosition();
+                menu.displayPlayerPositionAfterReverse(this.playerPosition, nbReverse);
                 break;
             default:
                 menu.displayInvalidChoice();
