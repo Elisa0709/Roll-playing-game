@@ -12,6 +12,7 @@ import personnage.Guerrier;
 import personnage.Magicien;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Game {
@@ -44,6 +45,7 @@ public class Game {
     public void initGame() {
         fillBoard();
         menu.displayIntro();
+        Collections.shuffle(board);
         createCharacter();
         menu.displayType(player.getType());
         int choice = menu.choiceStartMenu();
@@ -111,7 +113,7 @@ public class Game {
         int userChoice = userChoiceInput.nextInt();
         switch (userChoice) {
             case 1:
-                initGame();
+                Main.main(null);
                 break;
             case 2:
                 menu.displayGoodbye();

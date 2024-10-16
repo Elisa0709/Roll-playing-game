@@ -248,6 +248,9 @@ public class Menu {
     public void displayEndAttack(Ennemi ennemi){
         System.out.println("Vous infligez une puissante attaque au " + ennemi.getEnnemyName() + "\n");
         wait(300);
+        wait(300);
+        System.out.println("Le "+ennemi.getEnnemyName()+ " vous inflige à son tour une attaque\n" +
+                " Vous perdez "+ennemi.getEnemyforceAttack()+" PV.");
         if (ennemi.getEnnemyPV() > 0) {
             System.out.println("Vexé, le " + ennemi.getEnnemyName() + " s'enfuit en courant.\n" +
                     "Il ne lui reste plus que " + ennemi.getEnnemyPV() + " PV.\n");
@@ -256,6 +259,7 @@ public class Menu {
             System.out.println("Votre force n'a aucune limite.\n" +
                     "le " + ennemi.getEnnemyName() + " est mort.");
         }
+
     }
 
     /**
