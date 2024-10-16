@@ -2,6 +2,8 @@ import ennemis.Ennemi;
 import equipement.offensif.EquipementOffensif;
 import personnage.Personnage;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Menu {
     /**
@@ -58,20 +60,19 @@ public class Menu {
     }
 
     /**
-     * Affiche le menu de démarrage du jeu et retourne le choix de l'utilisateur.
+     * Affiche le menu de démarrage du jeu.
      *
-     * @return Le choix de l'utilisateur.
      */
-    public int choiceStartMenu() {
-        Scanner userChoiceInput = new Scanner(System.in);
+    public void displayChoiceStartMenu() {
         System.out.println("Par quoi on commence ?\n" +
                 "[1] Je veux voir mon personnage\n" +
                 "[2] Je veux modifier mon personnage\n" +
                 "[3] Commencer le jeu !\n" +
                 "[4] Quitter le jeu \n"
         );
-        return userChoiceInput.nextInt();
     }
+
+
 
     /**
      * Affiche le type de personnage de l'utilisateur.

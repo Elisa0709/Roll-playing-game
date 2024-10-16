@@ -7,13 +7,12 @@ import equipement.offensif.*;
 import equipement.potion.BigPotion;
 import equipement.potion.NormalPotion;
 import equipement.potion.Potion;
+import exceptions.InvalidchoiceException;
 import personnage.Personnage;
 import personnage.Guerrier;
 import personnage.Magicien;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     private final Menu menu = new Menu();
@@ -48,8 +47,7 @@ public class Game {
         Collections.shuffle(board);
         createCharacter();
         menu.displayType(player.getType());
-        int choice = menu.choiceStartMenu();
-        executeChoiceStartMenu(choice);
+        startMenu();
         while (playerPosition != 64) {
             playerChoice();
             getNewPlayerPosition(rollDice());
@@ -59,38 +57,52 @@ public class Game {
         isWinning();
     }
 
+    private int getValidChoice(List<Integer> options) {
+        menu.displayChoiceStartMenu();
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        while (!options.contains(choice)) {
+            System.out.println("Choix invalide, merci de renseigner un nouveau choix");
+            choice = scanner.nextInt();
+        }
+        return choice;
+    }
+
+    private void startMenu() {
+        try{
+            int choice = getValidChoice(Arrays.asList(1, 2, 3, 4)); //Arrays.asList permet de convertir les n° en liste
+            executeChoiceStartMenu(choice);
+        }catch(InputMismatchException e) {
+            System.out.println("Merci de renseigner un choix valide !");
+            menu.wait(200);
+            startMenu();
+        }
+    }
 
     private void executeChoiceStartMenu(int choice) {
+
         switch (choice) {
             case 1:
                 System.out.println(player.toString());
                 menu.wait(300);
-                int userchoice = menu.choiceStartMenu();
-                executeChoiceStartMenu(userchoice);
+                startMenu();
                 break;
             case 2:
                 String name = menu.getUserName();
                 menu.wait(300);
                 String type = menu.getUserType();
                 instancePlayer(name, type);
-                int menuChoice = menu.choiceStartMenu();
-                executeChoiceStartMenu(menuChoice);
+                startMenu();
                 break;
             case 3:
                 break; //permet de sortir du menu choix et de continuer les instructions de game
             case 4:
                 quitGame();
                 break;
-            default:
-                menu.displayInvalidChoice();
-                menu.wait(6000);
-                menu.choiceStartMenu();
-                executeChoiceStartMenu(menu.choiceStartMenu());
-                break;
         }
     }
 
-    private void quitGame(){
+    private void quitGame() {
         menu.displayGoodbye();
         menu.wait(300);
         System.exit(0);
@@ -107,7 +119,7 @@ public class Game {
         endGameChoices();
     }
 
-    private void endGameChoices(){
+    private void endGameChoices() {
         Scanner userChoiceInput = new Scanner(System.in);
         menu.displayEndMenu();
         int userChoice = userChoiceInput.nextInt();
@@ -284,16 +296,16 @@ public class Game {
 
     }
 
-    private void isPlayerDead(Personnage player){
+    private void isPlayerDead(Personnage player) {
         int playerPV = player.getPv();
-        if(playerPV <= 0){
+        if (playerPV <= 0) {
             menu.displayDeadPlayer();
             endGameChoices();
         }
 
     }
 
-    private void ennemyInteraction(Ennemi ennemi, Personnage player){
+    private void ennemyInteraction(Ennemi ennemi, Personnage player) {
         menu.displayEnemyStatistic(ennemi);
         int userChoice = menu.displayFightMenu();
         switch (userChoice) {
@@ -317,12 +329,11 @@ public class Game {
         }
     }
 
-    private void armeInteraction(Personnage player, EquipementOffensif equipement){
-        if (equipement.getMatchWithClass() == player.getType()){
+    private void armeInteraction(Personnage player, EquipementOffensif equipement) {
+        if (equipement.getMatchWithClass() == player.getType()) {
             player.setEquipementOffensif(equipement);
             menu.displayLootEquipementOffensif(equipement, player);
-        }
-        else{
+        } else {
 
             menu.displayInvalidLoot(equipement);
         }
@@ -332,10 +343,9 @@ public class Game {
         Interactable object = board.get(playerPosition);
         if (board.get(playerPosition) instanceof Ennemi) {
             ennemyInteraction((Ennemi) object, player);
-        } else if (board.get(playerPosition) instanceof EquipementOffensif){
+        } else if (board.get(playerPosition) instanceof EquipementOffensif) {
             armeInteraction(player, (EquipementOffensif) object);
-        }
-        else{
+        } else {
             object.interact(player);
         }
     }
