@@ -68,7 +68,10 @@ public abstract class Ennemi implements Interactable {
     @Override
     public void interact(Personnage player) {
         this.setEnemyPV(this.getEnnemyPV() - player.getForceAttaque());
-        player.setPv(player.getPv() - this.getEnemyforceAttack());
+        if(this.getEnnemyPV()>0) {
+            player.setPv(player.getPv() - this.getEnemyforceAttack());
+        }
+
     }
 
 

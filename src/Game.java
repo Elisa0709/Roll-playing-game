@@ -6,8 +6,7 @@ import ennemis.Sorcier;
 import equipement.offensif.*;
 import equipement.potion.BigPotion;
 import equipement.potion.NormalPotion;
-import equipement.potion.Potion;
-import exceptions.InvalidchoiceException;
+import exceptions.badChoiceException;
 import personnage.Personnage;
 import personnage.Guerrier;
 import personnage.Magicien;
@@ -16,7 +15,6 @@ import java.util.*;
 
 public class Game {
     private final Menu menu = new Menu();
-
     private Personnage player;
     private final ArrayList<Interactable> board;
     private int playerPosition;
@@ -43,14 +41,14 @@ public class Game {
      */
     public void initGame() {
         fillBoard();
-        menu.displayIntro();
         Collections.shuffle(board);
+        menu.displayIntro();
         createCharacter();
         menu.displayType(player.getType());
         startMenu();
         while (playerPosition != 64) {
             playerChoice();
-            getNewPlayerPosition(rollDice());
+            getNewPlayerPosition(randomInt(1, 6));
             interactWithCase(playerPosition, player);
             menu.wait(300);
         }
@@ -69,10 +67,10 @@ public class Game {
     }
 
     private void startMenu() {
-        try{
+        try {
             int choice = getValidChoice(Arrays.asList(1, 2, 3, 4)); //Arrays.asList permet de convertir les n° en liste
             executeChoiceStartMenu(choice);
-        }catch(InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("Merci de renseigner un choix valide !");
             menu.wait(200);
             startMenu();
@@ -108,11 +106,10 @@ public class Game {
         System.exit(0);
     }
 
-    private int rollDice() {
-        int range = (6 - 1) + 1;
+    private int randomInt(int min, int max) {
+        int range = (max - min) + 1;
         return (int) ((range * Math.random()) + 1);
     }
-
 
     private void isWinning() {
         menu.displayVictory();
@@ -194,12 +191,23 @@ public class Game {
         }
     }
 
-    private void createCharacter() {
-        String name = menu.getUserName();
-        menu.wait(400);
-        String type = menu.getUserType();
-        menu.wait(800);
-        instancePlayer(name, type);
+    private void createCharacter()  {
+          boolean characterCreated = false;
+
+        while (!characterCreated) {
+            try {
+                String name = menu.getUserName();
+                menu.wait(400);
+                String type = menu.getUserType();
+                menu.wait(800);
+                instancePlayer(name, type);
+                characterCreated = true; // Met à jour pour sortir de la boucle une fois le personnage créé
+            }
+            catch (InputMismatchException e) {
+                System.out.println(" /!\\ ERREUR /!\\ Saisie incorrecte. Veuillez réessayer.");
+                createCharacter();
+            }
+        }
     }
 
     private void instancePlayer(String name, String type) {
@@ -314,6 +322,7 @@ public class Game {
                 ennemi.interact(player);
                 isPlayerDead(player);
                 menu.displayEndAttack(ennemi);
+                removeEnnemi(ennemi);
                 break;
             case 2:
                 System.out.println(player.toString());
@@ -327,6 +336,11 @@ public class Game {
                 menu.wait(400);
                 ennemyInteraction(ennemi, player);
                 break;
+        }
+    }
+    private void removeEnnemi(Ennemi ennemi){
+        if (ennemi.getEnnemyPV() < 0){
+            board.remove(playerPosition);
         }
     }
 

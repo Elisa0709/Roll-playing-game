@@ -72,8 +72,6 @@ public class Menu {
         );
     }
 
-
-
     /**
      * Affiche le type de personnage de l'utilisateur.
      *
@@ -163,29 +161,6 @@ public class Menu {
     }
 
     /**
-     * Affiche le menu de victoire avec les options de rejouer ou de quitter le jeu.
-     */
-    public void displayEndMenu(){
-        System.out.println(
-                "[1] Rejouer\n" +
-                "[2] Quitter le jeu\n");
-    }
-
-    /**
-     * Affiche un message de fin lorsque le joueur quitte le jeu.
-     */
-    public void displayGoodbye(){
-        System.out.println(
-                "┌─────────────────────────────────────────┐\n" +
-                        "│  __     _     _            _   //\\  _   │\n" +
-                        "│  \\_\\   | |__ (_) ___ _ __ | |_|/_\\|| |_ │\n" +
-                        "│  /_\\   | '_ \\| |/ _ | '_ \\| __/ _ \\| __|│\n" +
-                        "│ / _ \\  | |_) | |  __| | | | || (_) | |_ │\n" +
-                        "│/_/ \\_\\ |_.__/|_|\\___|_| |_|\\__\\___/ \\__|│\n" +
-                        "└─────────────────────────────────────────┘"
-        );}
-
-    /**
      * Affiche un message d'erreur lorsque l'utilisateur entre un choix invalide.
      */
     public void displayInvalidChoice(){
@@ -250,10 +225,10 @@ public class Menu {
         System.out.println("Vous infligez une puissante attaque au " + ennemi.getEnnemyName() + "\n");
         wait(300);
         wait(300);
-        System.out.println("Le "+ennemi.getEnnemyName()+ " vous inflige à son tour une attaque\n" +
-                " Vous perdez "+ennemi.getEnemyforceAttack()+" PV.");
+
         if (ennemi.getEnnemyPV() > 0) {
-            System.out.println("Vexé, le " + ennemi.getEnnemyName() + " s'enfuit en courant.\n" +
+            System.out.println("Vexé, le " + ennemi.getEnnemyName() + " vous inflige à son tour une attaque et s'enfuit lâchement.\n" +
+                            " Vous perdez "+ennemi.getEnemyforceAttack()+" PV.\n"+
                     "Il ne lui reste plus que " + ennemi.getEnnemyPV() + " PV.\n");
             wait(300);
         } else {
@@ -309,6 +284,29 @@ public class Menu {
                         " > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ <  > ^ < "
         );
     }
+
+    /**
+     * Affiche le menu de victoire avec les options de rejouer ou de quitter le jeu.
+     */
+    public void displayEndMenu(){
+        System.out.println(
+                "[1] Rejouer\n" +
+                        "[2] Quitter le jeu\n");
+    }
+
+    /**
+     * Affiche un message de fin lorsque le joueur quitte le jeu.
+     */
+    public void displayGoodbye(){
+        System.out.println(
+                "┌─────────────────────────────────────────┐\n" +
+                        "│  __     _     _            _   //\\  _   │\n" +
+                        "│  \\_\\   | |__ (_) ___ _ __ | |_|/_\\|| |_ │\n" +
+                        "│  /_\\   | '_ \\| |/ _ | '_ \\| __/ _ \\| __|│\n" +
+                        "│ / _ \\  | |_) | |  __| | | | || (_) | |_ │\n" +
+                        "│/_/ \\_\\ |_.__/|_|\\___|_| |_|\\__\\___/ \\__|│\n" +
+                        "└─────────────────────────────────────────┘"
+        );}
 
 }
 
