@@ -113,6 +113,7 @@ public class Game {
         return (int) ((range * Math.random()) + 1);
     }
 
+
     private void isWinning() {
         menu.displayVictory();
         menu.wait(300);
