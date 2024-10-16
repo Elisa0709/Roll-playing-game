@@ -316,7 +316,12 @@ public class Game {
 
     private int getBackwardsPosition(){
         int nbReverse = randomInt(1,6);
-        this.playerPosition -= nbReverse;
+        if((this.playerPosition-nbReverse) <0){
+            this.playerPosition = 0;
+        }
+        else{
+            this.playerPosition -= nbReverse;
+        }
         return nbReverse;
     }
 
